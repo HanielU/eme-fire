@@ -1,0 +1,44 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	position: relative;
+	font-family: var(--font-normal);
+	color: rgb(255, 255, 255);
+	/* background: rgb(24, 24, 32) none repeat scroll 0% 0%; */
+	background: var(--bg);
+	transition: background-color 0.2s ease 0s;
+	line-height: 1.6;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+:root {
+	--font-heading: "Montserrat", sans-serif;
+	--font-normal: "Nunito Sans", sans-serif;
+
+	--red-sharp: #fa5959;
+	--red-dim: #f459592b;
+
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+
+	--bg: #161619;
+	--bg-accent: #1f1f22;
+
+	--fs-small: 16px;
+	--fs-mid: 18px;
+	--fs-semimid: 22px;
+	--fs-big: 26px;
+	--fs-large: 36px;
+}
