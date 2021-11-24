@@ -3,7 +3,7 @@
 	import Logout from "./components/Logout.svelte";
 	import Home from "./components/Home.svelte";
 	import SignIn from "./components/SignIn.svelte";
-	import MainApp from "./components/MainApp.svelte";
+	import MainApp from "./components/main-app/MainApp.svelte";
 
 	$: console.log($user);
 </script>
