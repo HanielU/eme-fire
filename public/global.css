@@ -2,6 +2,8 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	outline: none;
+	border: none;
 }
 
 html,
@@ -36,9 +38,26 @@ body {
 	--bg: #161619;
 	--bg-accent: #1f1f22;
 
+	--gray: #414145;
+	--fc-white: #e2e2e2;
+
 	--fs-small: 16px;
 	--fs-mid: 18px;
 	--fs-semimid: 22px;
 	--fs-big: 26px;
 	--fs-large: 36px;
+}
+
+.page-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+}
+
+button {
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
 }

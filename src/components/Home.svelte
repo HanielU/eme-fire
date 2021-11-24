@@ -7,7 +7,11 @@
 	}
 </script>
 
-<article out:fly={{ x: -300, duration: 500 }}>
+<article
+	class="page-wrapper"
+	in:fly={{ x: 300, duration: 500 }}
+	out:fly={{ x: -300, duration: 500 }}
+>
 	<div class="logo-wrapper">
 		<h1>Max Security</h1>
 	</div>
@@ -25,8 +29,6 @@
 
 <style lang="scss">
 	article {
-		height: 100%;
-		width: 100%;
 		max-width: 450px;
 		padding-top: 50px;
 		margin: auto;
@@ -56,6 +58,7 @@
 		width: 80%;
 		height: 300px;
 		text-align: center;
+		margin-bottom: 30px;
 
 		h3 {
 			font-size: var(--fs-big);
