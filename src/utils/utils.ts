@@ -14,7 +14,7 @@ export interface UserLogin {
 
 export interface User {
 	userType: UserType;
-	loggedIn: boolean;
+	loggedIn: { loggedOut: boolean; current: boolean };
 	userLogin: UserLogin;
 }
 
@@ -22,7 +22,10 @@ export type UserStore = Writable<User>;
 
 export const user: UserStore = localStorageStore("user", {
 	userType: null,
-	loggedIn: false,
+	loggedIn: {
+		loggedOut: false,
+		current: false,
+	},
 	userLogin: {
 		email: null,
 		password: null,

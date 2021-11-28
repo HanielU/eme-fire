@@ -1,15 +1,6 @@
 <script lang="ts">
 	import { fly, fade } from "svelte/transition";
 	import { user } from "../utils/utils";
-	import type { UserLogin } from "../utils/utils";
-
-	let userDetails: UserLogin = {
-		firstName: null,
-		lastName: null,
-		orgName: null,
-		email: null,
-		password: null,
-	};
 
 	// test data start
 	/* let userDetails: UserLogin = {
@@ -29,9 +20,11 @@
 	// test data end
 
 	function handleFormSubmit(): void {
-		if (!userDetails.email || !userDetails.password) return;
-		$user.userLogin = userDetails;
-		$user.loggedIn = true;
+		if (!$user.userLogin.email || !$user.userLogin.password) return;
+		$user.loggedIn = {
+			loggedOut: false,
+			current: true,
+		};
 	}
 </script>
 
@@ -41,41 +34,41 @@
 	out:fade={{ duration: 350 }}
 >
 	{#if $user.userType}
-		<h1>Sign In</h1>
+		<h1>Sign Up</h1>
 
 		<form on:submit|preventDefault={handleFormSubmit}>
 			{#if $user.userType === "Individual"}
 				<input
 					type="text"
-					bind:value={userDetails.firstName}
+					bind:value={$user.userLogin.firstName}
 					placeholder="First Name"
 				/>
 				<input
 					type="text"
-					bind:value={userDetails.lastName}
+					bind:value={$user.userLogin.lastName}
 					placeholder="Last Name"
 				/>
 			{:else if $user.userType === "Organisation"}
 				<input
 					type="text"
-					bind:value={userDetails.orgName}
+					bind:value={$user.userLogin.orgName}
 					placeholder="Organisation Name"
 				/>
 			{/if}
 
 			<input
 				type="email"
-				bind:value={userDetails.email}
+				bind:value={$user.userLogin.email}
 				placeholder="Email"
 				required
 			/>
 			<input
 				type="password"
-				bind:value={userDetails.password}
+				bind:value={$user.userLogin.password}
 				placeholder="Password"
 				required
 			/>
-			<button> Sign In </button>
+			<button> Sign Up </button>
 		</form>
 	{/if}
 </div>

@@ -4,7 +4,10 @@
 	const logout = () =>
 		user.set({
 			userType: null,
-			loggedIn: false,
+			loggedIn: {
+				loggedOut: false,
+				current: false,
+			},
 			userLogin: {
 				email: null,
 				password: null,

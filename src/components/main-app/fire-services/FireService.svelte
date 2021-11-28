@@ -24,7 +24,7 @@
 
 	$: fireServiceBusy = currentFireService.status === "Busy";
 	$: rideDuration = $search.mapDuration; // min
-	$: rideDurationInSecs = $search.mapDuration * 60; // secs
+	$: rideDurationInSecs = rideDuration * 60; // secs
 	$: ridePercent =
 		Math.floor((initialRideTime * 100) / rideDurationInSecs) || 0;
 	$: $progress = ridePercent;
