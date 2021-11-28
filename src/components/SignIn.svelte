@@ -1,12 +1,36 @@
 <script lang="ts">
-	import { fly } from "svelte/transition";
+	import { fly, fade } from "svelte/transition";
 	import { user } from "../utils/utils";
+	import type { UserLogin } from "../utils/utils";
 
-	let email: string, pword: string;
+	let userDetails: UserLogin = {
+		firstName: null,
+		lastName: null,
+		orgName: null,
+		email: null,
+		password: null,
+	};
+
+	// test data start
+	/* let userDetails: UserLogin = {
+		firstName: null,
+		lastName: null,
+		orgName: null,
+		email: "hanieltobi@gmail.com",
+		password: "haniel2004",
+	};
+
+	if ($user.userType === "Individual") {
+		userDetails.firstName = "Haniel";
+		userDetails.lastName = "Ubogu";
+	} else {
+		userDetails.orgName = "Hecto Tech";
+	} */
+	// test data end
 
 	function handleFormSubmit(): void {
-		if (!email || !pword) return;
-		$user.userLogin = { email, password: pword };
+		if (!userDetails.email || !userDetails.password) return;
+		$user.userLogin = userDetails;
 		$user.loggedIn = true;
 	}
 </script>
@@ -14,15 +38,46 @@
 <div
 	class="page-wrapper"
 	in:fly={{ x: 300, duration: 500 }}
-	out:fly={{ x: -300, duration: 500 }}
+	out:fade={{ duration: 350 }}
 >
-	<h1>Sign In</h1>
+	{#if $user.userType}
+		<h1>Sign In</h1>
 
-	<form on:submit|preventDefault={handleFormSubmit}>
-		<input type="email" bind:value={email} placeholder="Email" required />
-		<input type="password" bind:value={pword} placeholder="Password" required />
-		<button> Sign In </button>
-	</form>
+		<form on:submit|preventDefault={handleFormSubmit}>
+			{#if $user.userType === "Individual"}
+				<input
+					type="text"
+					bind:value={userDetails.firstName}
+					placeholder="First Name"
+				/>
+				<input
+					type="text"
+					bind:value={userDetails.lastName}
+					placeholder="Last Name"
+				/>
+			{:else if $user.userType === "Organisation"}
+				<input
+					type="text"
+					bind:value={userDetails.orgName}
+					placeholder="Organisation Name"
+				/>
+			{/if}
+
+			<input
+				type="email"
+				bind:value={userDetails.email}
+				placeholder="Email"
+				required
+			/>
+			<input
+				type="password"
+				bind:value={userDetails.password}
+				placeholder="Password"
+				required
+			/>
+			<button> Sign In </button>
+		</form>
+	{/if}
 </div>
 
 <style lang="scss">

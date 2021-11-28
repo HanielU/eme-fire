@@ -21,6 +21,7 @@
 		background: var(--bg-accent);
 		color: var(--fc-white);
 		position: fixed;
+		z-index: 9999;
 		left: 0;
 		bottom: 0;
 		cursor: pointer;

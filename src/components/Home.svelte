@@ -7,11 +7,7 @@
 	}
 </script>
 
-<article
-	class="page-wrapper"
-	in:fly={{ x: 300, duration: 500 }}
-	out:fly={{ x: -300, duration: 500 }}
->
+<article class="page-wrapper" transition:fly={{ x: -300, duration: 500 }}>
 	<div class="logo-wrapper">
 		<h1>Max Security</h1>
 	</div>
@@ -31,9 +27,9 @@
 	article {
 		max-width: 450px;
 		padding-top: 50px;
-		margin: auto;
 		@include flex($justify: space-around);
 		flex-direction: column;
+		z-index: 5;
 	}
 
 	.logo-wrapper {

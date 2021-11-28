@@ -4,8 +4,6 @@
 	import Home from "./components/Home.svelte";
 	import SignIn from "./components/SignIn.svelte";
 	import MainApp from "./components/main-app/MainApp.svelte";
-
-	$: console.log($user);
 </script>
 
 <main>
