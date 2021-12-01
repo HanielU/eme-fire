@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { fly } from "svelte/transition";
 	import { getContext } from "svelte";
-	import { tweened } from "svelte/motion";
-	import { sineIn } from "svelte/easing";
 	import type {
 		ActionsPageRouterStore,
 		MapDetailsSearchStore,
@@ -13,10 +11,6 @@
 
 	const search: MapDetailsSearchStore = getContext("search");
 	const router: ActionsPageRouterStore = getContext("router");
-	const progress = tweened(0, {
-		duration: 400,
-		easing: sineIn,
-	});
 
 	let initialRideTime = 0; // initial time secs
 	let serviceHired = false;
@@ -25,15 +19,22 @@
 	$: fireServiceBusy = currentFireService.status === "Busy";
 	$: rideDuration = $search.mapDuration; // min
 	$: rideDurationInSecs = rideDuration * 60; // secs
-	$: ridePercent =
-		Math.floor((initialRideTime * 100) / rideDurationInSecs) || 0;
-	$: $progress = ridePercent;
+	$: ridePercent = returnPercent(initialRideTime) || 0; // percentage of total ride duration
 	/* $: console.log({
 			min: rideDuration,
 			secs: rideDurationInSecs,
 			ridePercent,
 			initialRideTime,
 		}); */
+
+	function returnPercent(initialRideTime: number): number {
+		let percent: number = +(
+			(initialRideTime * 100) /
+			rideDurationInSecs
+		).toFixed(2);
+		if (percent > 100) return Math.floor(percent);
+		return percent;
+	}
 
 	function goBack() {
 		$router = {
@@ -57,6 +58,7 @@
 	}
 
 	function stopHire() {
+		if (!rideStarted && serviceHired) goBack();
 		serviceHired = false;
 		rideStarted = false;
 		initialRideTime = 0;
@@ -72,9 +74,9 @@
 	</h1>
 
 	<h3>
-		Estimated time to your location: {$search.mapDuration === 0
+		Estimated time to your location: {!rideDuration || rideDuration === 0
 			? "loading..."
-			: `${$search.mapDuration} mins`}
+			: `${rideDuration} mins`}
 	</h3>
 
 	<div class="btns">
@@ -90,7 +92,7 @@
 	</div>
 
 	<div class="duration-wrapper">
-		<div class="duration" style="--width: {$progress}%" />
+		<div class="duration" style="--width: {ridePercent}%" />
 	</div>
 	<h4 class="duration__timer">
 		{serviceHired
@@ -143,6 +145,7 @@
 		max-width: 100%;
 		height: 20px;
 		background: var(--red-sharp);
+		transition: width 150ms linear;
 
 		&__timer {
 			color: var(--red-sharp);

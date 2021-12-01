@@ -87,9 +87,11 @@
 			mapboxgl.accessToken =
 				"pk.eyJ1IjoiaGFuaWVsdSIsImEiOiJja3dha2NpY2sxc2VrMnVyaGVuM21zaGhoIn0.MKnA0D7iVP_3gSKNwz6EjQ";
 
-			navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-				enableHighAccuracy: true,
-			});
+			if (!mapPresent) {
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+					enableHighAccuracy: true,
+				});
+			}
 
 			function onSuccess(position) {
 				let supposedCurrentPos = [
