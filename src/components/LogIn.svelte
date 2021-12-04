@@ -2,12 +2,8 @@
 	import { fly, fade } from "svelte/transition";
 	import { user } from "../utils/utils";
 
-	function handleFormSubmit(): void {
-		if (($user.loggedIn.current = true)) $user.loggedIn.loggedOut = false;
-	}
-	function changePassword() {
-		$user.loggedIn.current = false;
-	}
+	const handleFormSubmit = () => ($user.loggedIn.loggedOut = false);
+	const changePassword = () => ($user.loggedIn.current = false);
 </script>
 
 <div
