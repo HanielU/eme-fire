@@ -1,24 +1,22 @@
 <script lang="ts">
-	import { user } from "./utils/utils";
-	import Logout from "./components/Logout.svelte";
-	import Home from "./components/Home.svelte";
-	import SignUp from "./components/SignUp.svelte";
-	import LogIn from "./components/LogIn.svelte";
-	import MainApp from "./components/main-app/MainApp.svelte";
+  import { user } from "./utils/utils";
+  import Logout from "./components/Logout.svelte";
+  import Home from "./components/Home.svelte";
+  import SignUp from "./components/SignUp.svelte";
+  import LogIn from "./components/LogIn.svelte";
+  import MainApp from "./components/main-app/MainApp.svelte";
 
-	// runs as soon as component is rendered
-	if ($user.loggedIn.current) $user.loggedIn.loggedOut = true; // [1]
-	if ($user.loggedIn.loggedOut && !$user.loggedIn.current)
-		$user.loggedIn.current = true; // [2]
-	if ($user.userType && !$user.loggedIn.current) $user.userType = null; // [3]
+  // runs as soon as component is rendered
+  if ($user.loggedIn.current) $user.loggedIn.loggedOut = true; // [1]
+  if ($user.loggedIn.loggedOut && !$user.loggedIn.current) $user.loggedIn.current = true; // [2]
+  if ($user.userType && !$user.loggedIn.current) $user.userType = null; // [3]
 
-	$: showHome = !$user.userType; // [4]
-	$: showSignUp = $user.userType && !$user.loggedIn.current; // [5]
-	$: showLogin = $user.userType && $user.loggedIn.loggedOut; // [6]
-	$: showMainApp =
-		$user.userType && !$user.loggedIn.loggedOut && $user.loggedIn.current; // [7]
+  $: showHome = !$user.userType; // [4]
+  $: showSignUp = $user.userType && !$user.loggedIn.current; // [5]
+  $: showLogin = $user.userType && $user.loggedIn.loggedOut; // [6]
+  $: showMainApp = $user.userType && !$user.loggedIn.loggedOut && $user.loggedIn.current; // [7]
 
-	/* 
+  /* 
 		COMMENT INDEX
 
 		[1]: if user was logged in before refresh, log out the user
@@ -39,24 +37,24 @@
 </script>
 
 <main>
-	{#if showHome}
-		<Home />
-	{:else if showSignUp}
-		<SignUp />
-	{:else if showLogin}
-		<LogIn />
-	{:else if showMainApp}
-		<MainApp />
-	{/if}
+  {#if showHome}
+    <Home />
+  {:else if showSignUp}
+    <SignUp />
+  {:else if showLogin}
+    <LogIn />
+  {:else if showMainApp}
+    <MainApp />
+  {/if}
 
-	<Logout />
+  <Logout />
 </main>
 
 <style>
-	main {
-		height: 100%;
-		overflow-y: auto;
-		overflow-x: hidden;
-		position: relative;
-	}
+  main {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
 </style>
