@@ -1,65 +1,65 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	outline: none;
-	border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
 }
 
 html,
 body {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	position: relative;
-	font-family: var(--font-normal);
-	color: rgb(255, 255, 255);
-	/* background: rgb(24, 24, 32) none repeat scroll 0% 0%; */
-	background: var(--bg);
-	transition: background-color 0.2s ease 0s;
-	line-height: 1.6;
-	width: 100%;
-	overflow-x: hidden;
+  position: relative;
+  font-family: var(--font-normal);
+  color: rgb(255, 255, 255);
+  /* background: rgb(24, 24, 32) none repeat scroll 0% 0%; */
+  background: var(--bg);
+  transition: background-color 0.2s ease 0s;
+  line-height: 1.6;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 :root {
-	--font-heading: "Montserrat", sans-serif;
-	--font-normal: "Nunito Sans", sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+  --font-normal: "Nunito Sans", sans-serif;
 
-	--red-sharp: #fa5959;
-	--red-dim: #f459592b;
+  --red-sharp: #fa5959;
+  --red-dim: #f459592b;
 
-	--fw-regular: 400;
-	--fw-medium: 500;
-	--fw-semibold: 600;
-	--fw-bold: 700;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
 
-	--bg: #161619;
-	--bg-accent: #1f1f22;
+  --bg: #161619;
+  --bg-accent: #1f1f22;
 
-	--gray: #414145;
-	--fc-white: #e2e2e2;
+  --gray: #414145;
+  --fc-white: #e2e2e2;
 
-	--fs-small: 16px;
-	--fs-mid: 18px;
-	--fs-semimid: 22px;
-	--fs-big: 26px;
-	--fs-large: 36px;
+  --fs-small: 16px;
+  --fs-mid: 18px;
+  --fs-semimid: 22px;
+  --fs-big: 26px;
+  --fs-large: 36px;
 }
 
 .page-wrapper {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-	max-width: 600px;
-	margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
 }
 
 button {
-	user-select: none;
-	-webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }

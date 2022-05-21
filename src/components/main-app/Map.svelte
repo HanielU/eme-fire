@@ -93,7 +93,7 @@
 				});
 			}
 
-			function onSuccess(position) {
+			function onSuccess(position: GeolocationPosition) {
 				let supposedCurrentPos = [
 					position.coords.longitude,
 					position.coords.latitude,

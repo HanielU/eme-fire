@@ -1,19 +1,19 @@
 @mixin flex($align: center, $justify: center) {
-	display: flex;
-	justify-content: $justify;
-	align-items: $align;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
 }
 
 %generic-btn {
-	padding: 15px;
-	font-size: var(--small);
-	background: var(--bg-accent);
-	color: var(--fc-white);
-	cursor: pointer;
-	border-radius: 8px;
-	filter: brightness(140%);
+  padding: 15px;
+  font-size: var(--small);
+  background: var(--bg-accent);
+  color: var(--fc-white);
+  cursor: pointer;
+  border-radius: 8px;
+  filter: brightness(140%);
 
-	&:hover {
-		filter: brightness(180%);
-	}
+  &:hover {
+    filter: brightness(180%);
+  }
 }
