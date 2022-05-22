@@ -54,5 +54,5 @@ export const fireServices: FireService[] = [
 ];
 
 export function correctFormat(arr: Coordinates): Coordinates {
-  return arr.reverse();
+  return arr.reverse() as Coordinates;
 }

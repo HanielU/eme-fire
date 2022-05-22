@@ -1,14 +1,9 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { writable } from "svelte/store";
-  import {
-    user,
-    ActionsPage,
-    ActionsPageRouterStore,
-    MapDetailsParamsStore
-  } from "../../utils/utils";
+  import { user, ActionsPage, ActionsPageRouterStore } from "../../utils/utils";
   import Search from "./Search.svelte";
-  import { getContext, setContext } from "svelte";
+  import { setContext } from "svelte";
 
   let { firstName, orgName } = $user.userLogin;
 
@@ -20,9 +15,6 @@
       out: 1000
     }
   });
-
-  const search: MapDetailsParamsStore = getContext("search");
-
   function setPage(page: ActionsPage): void {
     let cP = $router.currentPage;
     $router.currentPage = page;
@@ -37,7 +29,7 @@
   setContext("setPage", setPage);
 </script>
 
-<section class:expand={$search.expand}>
+<section>
   {#if $router.currentPage === "home"}
     <div class="actions-home" transition:fly={{ x: -300, duration: 300 }}>
       <div class="actions-header">
@@ -70,10 +62,6 @@
     left: 0;
     z-index: 2;
     transition: height 350ms ease;
-
-    &.expand {
-      height: 95%;
-    }
   }
 
   .actions-home {

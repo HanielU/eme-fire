@@ -1,19 +1,23 @@
-<script>
+<script lang="ts">
   import { fly } from "svelte/transition";
   import Map from "./Map.svelte";
   import Actions from "./Actions.svelte";
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
-  import { errorOccured } from "../../utils/utils";
+  import { errorOccured, MapDetailsParamsStore, MapDetailsSearchStore } from "../../utils/utils";
   import ErrorPage from "../ErrorPage.svelte";
+  import { Marker } from "mapbox-gl";
 
-  const search = writable({});
+  const search: MapDetailsSearchStore = writable({
+    marker: null,
+    mapDuration: null
+  });
 
-  const MapDetails = writable({
+  const MapDetails: MapDetailsParamsStore = writable({
     map: null,
     destination: null,
     currentPos: null,
-    addMarker: (map, location) => new mapboxgl.Marker().setLngLat(location).addTo(map)
+    addMarker: (map, location) => new Marker().setLngLat(location).addTo(map)
   });
 
   setContext("search", search);
@@ -21,9 +25,7 @@
 </script>
 
 <div class="page-wrapper" transition:fly={{ x: 300, duration: 300 }}>
-  <!-- {#if !$search.expand} -->
   <Map />
-  <!-- {/if} -->
 
   <Actions />
 

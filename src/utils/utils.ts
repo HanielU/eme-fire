@@ -1,3 +1,4 @@
+import type { LngLatLike, Map, Marker } from "mapbox-gl";
 import { Writable, writable } from "svelte/store";
 
 export const errorOccured: Writable<boolean> = writable(false);
@@ -48,21 +49,20 @@ export interface ActionsPageRouter {
 
 export type ActionsPageRouterStore = Writable<ActionsPageRouter>;
 
-export type Coordinates = number[];
+export type Coordinates = [number, number];
 
 export interface MapDetailsParams {
-  map: any;
+  map: Map;
   currentPos: Coordinates;
   destination: Coordinates;
-  expand: boolean;
-  addMarker: (map, location) => any;
+  addMarker: (map: Map, location: LngLatLike) => Marker;
 }
 
 export type MapDetailsParamsStore = Writable<MapDetailsParams>;
 
 export interface MapDetailsSearch {
-  marker?: any;
-  mapDuration?: any;
+  marker: Marker;
+  mapDuration: number;
 }
 
 export type MapDetailsSearchStore = Writable<MapDetailsSearch>;

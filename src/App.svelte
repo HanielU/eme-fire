@@ -1,4 +1,5 @@
 <script lang="ts">
+  import "mapbox-gl/dist/mapbox-gl.css";
   import { user } from "./utils/utils";
   import Logout from "./components/Logout.svelte";
   import Home from "./components/Home.svelte";

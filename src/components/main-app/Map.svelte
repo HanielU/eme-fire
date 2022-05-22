@@ -7,6 +7,7 @@
     MapDetailsSearchStore,
     user
   } from "../../utils/utils";
+  import mapboxgl, { Map, GeoJSONSource } from "mapbox-gl";
 
   let mapPresent = false;
 
@@ -41,7 +42,7 @@
     const data = json.routes[0];
     $search.mapDuration = Math.floor(data.duration / 60);
     const route = data.geometry.coordinates;
-    const geojson = {
+    const geojson: GeoJSON.Feature<GeoJSON.Geometry> = {
       type: "Feature",
       properties: {},
       geometry: {
@@ -51,7 +52,7 @@
     };
     // if the route already exists on the map, we'll reset it using setData
     if ($MapDetails.map.getSource("route")) {
-      $MapDetails.map.getSource("route").setData(geojson);
+      (<GeoJSONSource>$MapDetails.map.getSource("route")).setData(geojson);
     }
     // otherwise, we'll make a new request
     else {
@@ -77,7 +78,6 @@
 
   onMount(() => {
     try {
-      // @ts-ignore
       mapboxgl.accessToken =
         "pk.eyJ1IjoiaGFuaWVsdSIsImEiOiJja3dha2NpY2sxc2VrMnVyaGVuM21zaGhoIn0.MKnA0D7iVP_3gSKNwz6EjQ";
 
@@ -88,21 +88,20 @@
       }
 
       function onSuccess(position: GeolocationPosition) {
-        let supposedCurrentPos = [position.coords.longitude, position.coords.latitude];
+        let supposedCurrentPos: Coordinates = [position.coords.longitude, position.coords.latitude];
         setupMap(supposedCurrentPos);
       }
 
       function onError() {
         let bazeUniversityBlockDLibrary = [7.405533646178658, 9.006449673032344];
-        let bazeUniversity = [7.405952340281745, 9.007773176138375];
+        let bazeUniversity: Coordinates = [7.405952340281745, 9.007773176138375];
         setupMap(bazeUniversity);
       }
 
       function setupMap(center: Coordinates) {
         $MapDetails.currentPos = center;
 
-        // @ts-ignore
-        $MapDetails.map = new mapboxgl.Map({
+        $MapDetails.map = new Map({
           container: "map",
           style: "mapbox://styles/mapbox/streets-v11",
           center: $MapDetails.currentPos,
